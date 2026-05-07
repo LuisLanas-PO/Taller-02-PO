@@ -14,7 +14,7 @@ public class Pokemon {
 	private String tipo;
 	private String estado;
 
-	public Pokemon(String nombre, String habitat, double porcentajeAparicion, int vida, int ataque, int defensa, int ataqueEspecial, int defensaEspecial, int velocidad, String tipo, String estado) {
+	public Pokemon(String nombre, String habitat, double porcentajeAparicion, int vida, int ataque, int defensa, int ataqueEspecial, int defensaEspecial, int velocidad, String tipo) {
 		this.nombre = nombre;
 		this.habitat = habitat;
 		this.porcentajeAparicion = porcentajeAparicion;
@@ -25,7 +25,6 @@ public class Pokemon {
 		this.defensaEspecial = defensaEspecial;
 		this.velocidad = velocidad;
 		this.tipo = tipo;
-		this.estado = "vivo";
 	}
 
 	public int getSumaStats() {
