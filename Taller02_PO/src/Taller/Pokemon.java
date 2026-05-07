@@ -14,8 +14,7 @@ public class Pokemon {
 	private String tipo;
 	private String estado;
 
-	protected Pokemon(String nombre, String habitat, double porcentajeAparicion, int vida, int ataque, int defensa,
-			int ataqueEspecial, int defensaEspecial, int velocidad, String tipo, String estado) {
+	public Pokemon(String nombre, String habitat, double porcentajeAparicion, int vida, int ataque, int defensa, int ataqueEspecial, int defensaEspecial, int velocidad, String tipo, String estado) {
 		this.nombre = nombre;
 		this.habitat = habitat;
 		this.porcentajeAparicion = porcentajeAparicion;
