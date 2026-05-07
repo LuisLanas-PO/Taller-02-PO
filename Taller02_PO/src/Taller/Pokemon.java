@@ -27,7 +27,7 @@ public class Pokemon {
 		this.tipo = tipo;
 	}
 	
-	public Pokemon(String nombre) { //constructor para los gimnasios
+	public Pokemon(String nombre) { //constructor para los gimnasios (no se sea muy util pq para los gimasios podriamos usar tranquilamente el de arrira)
         this.nombre = nombre;
         this.habitat = "none";
         this.porcentajeAparicion = 0;

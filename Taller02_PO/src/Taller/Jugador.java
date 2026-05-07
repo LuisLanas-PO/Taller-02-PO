@@ -5,22 +5,28 @@ import java.util.ArrayList;
 public class Jugador {
 
     private String nombre;
+    private int medallas;
     private ArrayList<Pokemon> equipo;
     
-	public Jugador(String nombre, ArrayList<Pokemon> equipo) { //Por si tiene partida guardada
+	public Jugador(String nombre, int medallas ,ArrayList<Pokemon> pokemonsJugador) { //Por si tiene partida guardada
 		super();
 		this.nombre = nombre;
-		this.equipo = equipo;
+		this.medallas = medallas;
+		this.equipo = pokemonsJugador;
 	}
 	
 	public Jugador(String nombre) { //Por si comienza una nueva partida
 		super();
 		this.nombre = nombre;
+		this.medallas = 0;
 		this.equipo = new ArrayList<>();
 	}
 	
 	public static void mostrarEquipo() {
 		System.out.println("Equipo actual:");
+		for (Pokemon pokemon : equipo) {
+	        System.out.println(pokemon.getNombre());
+	    }
 	}
 	public String getNombre() {
 		return nombre;

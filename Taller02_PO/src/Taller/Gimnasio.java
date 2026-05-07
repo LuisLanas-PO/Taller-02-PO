@@ -9,6 +9,14 @@ public class Gimnasio {
     private String estado;
     private List<Pokemon> pokemons;
     
+	public Gimnasio(int numero, String lider, String estado, List<Pokemon> pokemons) { //Cargar los datos de los lideres
+		super();
+		this.numero = numero;
+		this.lider = lider;
+		this.estado = estado;
+		this.pokemons = pokemons;
+	}
+	
 	public int getNumero() {
 		return numero;
 	}
