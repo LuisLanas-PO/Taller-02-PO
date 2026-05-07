@@ -38,6 +38,9 @@ public class lectorArchivos {
 		} catch (IOException e) {
 			System.out.println("Error al leer Pokedex.txt: " + e.getMessage());
 		}
+		
 		return pokedex;
+		
 	}
+	
 }

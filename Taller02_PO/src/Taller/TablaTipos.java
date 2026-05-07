@@ -24,4 +24,9 @@ public class TablaTipos {
         {  1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 2.0, 1.0 }  // HADA
     };
     //Filas -> Pokemon del jugador; Columna->PokemonRival
+    
+    public static double obtenerEfectividad(int atacante, int defensor) {
+        return EFECTIVIDAD[atacante][defensor];
+    }
+    
 }
