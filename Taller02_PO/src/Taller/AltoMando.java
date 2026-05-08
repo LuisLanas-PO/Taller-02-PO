@@ -30,5 +30,10 @@ public class AltoMando {
 	public String toString() {
 		return "AltoMando [numero=" + numero + ", nombre=" + nombre + ", pokemons=" + pokemons + "]";
 	}
+
+	public static void desafioAltoMando() {
+		// TODO Auto-generated method stub
+		
+	}
     
 }

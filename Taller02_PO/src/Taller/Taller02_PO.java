@@ -6,11 +6,19 @@ import java.util.*;
 public class Taller02_PO {
 
 	static Scanner escribe = new Scanner(System.in);
+	static List<Pokemon> pokedex;
+    static List<Gimnasio> gimnasios;
+    static List<AltoMando> altoMando;
+    static List<String> habitats;
+    static Jugador jugador;
+
 
 	public static void main(String[] args) {
-
-		menuPrincipal();
-		
+		pokedex = lectorArchivos.cargarPokedex();
+        gimnasios = lectorArchivos.cargarGimnasios();
+        altoMando = lectorArchivos.cargarAltoMando();
+        habitats  = lectorArchivos.cargarHabitats();
+        menuPrincipal();
 	}
 
 	private static void menuPrincipal() {
@@ -30,10 +38,19 @@ public class Taller02_PO {
 
 				switch (opcion) {
 				case 1:
-					Partida.continuarPartida();
-					break;
+				    List<Pokemon> pokedex = lectorArchivos.cargarPokedex();
+				    Jugador jugador = lectorArchivos.cargarRegistros(pokedex);
+				    if (jugador == null) {
+				        System.out.println("No existe una partida guardada.");
+				        System.out.println("Crea una nueva partida primero.");
+				        System.out.println("");
+				        break;
+				    }
+				    Partida.continuarPartida();
+				    break;
 				case 2:
 					Partida.nuevaPartida();
+					Partida.continuarPartida();
 					break;
 				case 3:
 					System.out.println("Nos vemos pronto entonces!!");

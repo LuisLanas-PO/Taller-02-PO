@@ -41,5 +41,10 @@ public class Gimnasio {
 	public void setPokemons(List<Pokemon> pokemons) {
 		this.pokemons = pokemons;
 	}
+
+	public static void retarGimnasio() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
