@@ -1,2 +1,4 @@
-Malawitas;none
-Ludicolo;null
+Luis;EmmaLaArdillaRabiosa
+Umbreon;Vivo
+Poliwrath;Vivo
+Magcargo;Vivo

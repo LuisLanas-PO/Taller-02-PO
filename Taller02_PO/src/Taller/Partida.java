@@ -24,18 +24,20 @@ public class Partida {
 	}
 
 	public static void continuarPartida() {
-		
-		Scanner escribe  = new Scanner(System.in);
-		
+
+		Scanner escribe = new Scanner(System.in);
+
 		List<Pokemon> pokedex = lectorArchivos.cargarPokedex();
+		List<AltoMando> altoMando = lectorArchivos.cargarAltoMando(pokedex);
+		List<Gimnasio> gimnasios = lectorArchivos.cargarGimnasios(pokedex);
 		Jugador jugador = lectorArchivos.cargarRegistros(pokedex);
 		System.out.println("Bienvenido " + jugador.getNombre() + "!!");
 		System.out.println("");
-		
+
 		int opcion = -1;
-		
+
 		while (opcion != 8) {
-			
+
 			System.out.println("1) Revisar equipo.");
 			System.out.println("2) Salir a capturar.");
 			System.out.println("3) Acceso al PC (cambiar Pokémon del equipo).");
@@ -45,9 +47,9 @@ public class Partida {
 			System.out.println("7) Guardar.");
 			System.out.println("8) Guardar y Salir.");
 			System.out.print("Ingrese su opción: ");
-			
+
 			opcion = escribe.nextInt();
-			
+
 			if (opcion == 8) {
 				lectorArchivos.guardarRegistros(jugador);
 				System.out.println("");
@@ -55,22 +57,26 @@ public class Partida {
 				System.out.println("");
 				break;
 			}
-			
+
 			switch (opcion) {
 			case 1:
 				jugador.mostrarEquipo();
 				break;
 			case 2:
 				salirCapturar(jugador, pokedex);
+				System.out.println("");
 				break;
 			case 3:
 				jugador.accesoPC();
+				System.out.println("");
 				break;
 			case 4:
-				Gimnasio.retarGimnasio();
+				Gimnasio.retarGimnasio(jugador, gimnasios);
+				System.out.println("");
 				break;
 			case 5:
-				AltoMando.desafioAltoMando();
+				AltoMando.desafioAltoMando(jugador, altoMando, gimnasios);
+				System.out.println("");
 				break;
 			case 6:
 				jugador.curarPokemon();
@@ -82,118 +88,120 @@ public class Partida {
 				System.out.println("Opción invalida, intente de nuevo");
 				System.out.println("");
 			}
-			
+
 		}
-		
+
 	}
 
 	private static void salirCapturar(Jugador jugador, List<Pokemon> pokedex) {
 		Scanner escribe = new Scanner(System.in);
-		
+
 		System.out.println("");
-	    System.out.println("Zonas disponibles:");
-	    System.out.println("1) Lago");
-	    System.out.println("2) Cueva");
-	    System.out.println("3) Montaña");
-	    System.out.println("4) Bosque");
-	    System.out.println("5) Prado");
-	    System.out.println("6) Mar");
-	    System.out.println("7) Volver al menu.");
+		System.out.println("Zonas disponibles:");
+		System.out.println("1) Lago");
+		System.out.println("2) Cueva");
+		System.out.println("3) Montaña");
+		System.out.println("4) Bosque");
+		System.out.println("5) Prado");
+		System.out.println("6) Mar");
+		System.out.println("7) Volver al menu.");
 
-	    System.out.print("Seleccione zona: ");
+		System.out.print("Seleccione zona: ");
 
-	    int opcion = escribe.nextInt();
-	    escribe.nextLine();
-	    
-	    if (opcion == 7) {
-	    	return;
-	    }
+		int opcion = escribe.nextInt();
+		escribe.nextLine();
 
-	    String habitat = "";
+		if (opcion == 7) {
+			return;
+		}
 
-	    switch (opcion) {
+		String habitat = "";
 
-	    case 1:
-	        habitat = "Lago";
-	        break;
+		switch (opcion) {
 
-	    case 2:
-	        habitat = "Cueva";
-	        break;
+		case 1:
+			habitat = "Lago";
+			break;
 
-	    case 3:
-	        habitat = "Montaña";
-	        break;
+		case 2:
+			habitat = "Cueva";
+			break;
 
-	    case 4:
-	        habitat = "Bosque";
-	        break;
+		case 3:
+			habitat = "Montaña";
+			break;
 
-	    case 5:
-	        habitat = "Prado";
-	        break;
+		case 4:
+			habitat = "Bosque";
+			break;
 
-	    case 6:
-	        habitat = "Mar";
-	        break;
+		case 5:
+			habitat = "Prado";
+			break;
 
-	    default:
-	        System.out.println("Zona inválida.");
-	        System.out.println("");
-	        return;
-	    }
-	    
-	    ArrayList<Pokemon> posibles = new ArrayList<>();
+		case 6:
+			habitat = "Mar";
+			break;
 
-	    for (Pokemon pokemon : pokedex) {
+		default:
+			System.out.println("Zona inválida.");
+			System.out.println("");
+			return;
+		}
 
-	        if (pokemon.getHabitat().equalsIgnoreCase(habitat) && !jugador.tienePokemon(pokemon.getNombre())) {
-	            posibles.add(pokemon);
-	        }
-	    }
+		ArrayList<Pokemon> posibles = new ArrayList<>();
 
-	    if (posibles.isEmpty()) {
+		for (Pokemon pokemon : pokedex) {
 
-	    	System.out.println("No quedan Pokémon por capturar en esta zona.");
-	        return;
-	    }
+			if (pokemon.getHabitat().equalsIgnoreCase(habitat) && !jugador.tienePokemon(pokemon.getNombre())) {
+				posibles.add(pokemon);
+			}
+		}
 
-	    Random random = new Random();
+		if (posibles.isEmpty()) {
 
-	    Pokemon encontrado = posibles.get(random.nextInt(posibles.size()));
-	    
-	    System.out.println("");
-	    System.out.println("Oh!! Ha aparecido un increible " + encontrado.getNombre() + "!!");
-	    System.out.println("Que deseas hacer?");
-	    System.out.println("");
-	    
-	    System.out.println("1) Capturar");
-	    System.out.println("2) Huir");
-	    System.out.println("");
-	    System.out.print("Ingrese su opción: ");
-	    int decision = escribe.nextInt();
+			System.out.println("No quedan Pokémon por capturar en esta zona.");
+			return;
+		}
 
-	    if (decision == 1) {
+		Random random = new Random();
 
-	        boolean espacioEquipo = jugador.getPokemons().size() < 6;
+		Pokemon encontrado = posibles.get(random.nextInt(posibles.size()));
 
-	        jugador.agregarPokemon(encontrado);
+		System.out.println("");
+		System.out.println("Oh!! Ha aparecido un increible " + encontrado.getNombre() + "!!");
+		System.out.println("Que deseas hacer?");
+		System.out.println("");
 
-	        lectorArchivos.guardarRegistros(jugador);
+		System.out.println("1) Capturar");
+		System.out.println("2) Huir");
+		System.out.println("");
+		System.out.print("Ingrese su opción: ");
+		int decision = escribe.nextInt();
 
-	        System.out.println(encontrado.getNombre() + " capturado con éxito!!");
+		if (decision == 1) {
 
-	        if (espacioEquipo) {
-	            System.out.println(encontrado.getNombre() + " ha sido agregado a tu equipo!");
-	            System.out.println("");
-	        } else {
-	            System.out.println(encontrado.getNombre() + " fue enviado al PC.");
-	            System.out.println("");
-	        }
+			boolean espacioEquipo = jugador.getPokemons().size() < 6;
 
-	    } else {
-	        System.out.println("Has huido.");
-	    }
+			encontrado.setEstado("Vivo");
+
+			jugador.agregarPokemon(encontrado);
+
+			lectorArchivos.guardarRegistros(jugador);
+
+			System.out.println(encontrado.getNombre() + " capturado con éxito!!");
+
+			if (espacioEquipo) {
+				System.out.println(encontrado.getNombre() + " ha sido agregado a tu equipo!");
+				System.out.println("");
+			} else {
+				System.out.println(encontrado.getNombre() + " fue enviado al PC.");
+				System.out.println("");
+			}
+
+		} else {
+			System.out.println("Has huido.");
+		}
 
 	}
 

@@ -15,8 +15,8 @@ public class Taller02_PO {
 
 	public static void main(String[] args) {
 		pokedex = lectorArchivos.cargarPokedex();
-        gimnasios = lectorArchivos.cargarGimnasios();
-        altoMando = lectorArchivos.cargarAltoMando();
+        gimnasios = lectorArchivos.cargarGimnasios(pokedex);
+        altoMando = lectorArchivos.cargarAltoMando(pokedex);
         habitats  = lectorArchivos.cargarHabitats();
         menuPrincipal();
 	}

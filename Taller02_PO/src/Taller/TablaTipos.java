@@ -28,5 +28,68 @@ public class TablaTipos {
     public static double obtenerEfectividad(int atacante, int defensor) {
         return EFECTIVIDAD[atacante][defensor];
     }
+    public static int obtenerIndiceTipo(String tipo) {
+    	if (tipo == null) return -1;
+
+        switch (tipo.toLowerCase()) {
+
+            case "normal":
+                return 0;
+
+            case "fuego":
+                return 1;
+
+            case "agua":
+                return 2;
+
+            case "planta":
+                return 3;
+
+            case "electrico":
+                return 4;
+
+            case "hielo":
+                return 5;
+
+            case "lucha":
+                return 6;
+
+            case "veneno":
+                return 7;
+
+            case "tierra":
+                return 8;
+
+            case "volador":
+                return 9;
+
+            case "psiquico":
+                return 10;
+
+            case "bicho":
+                return 11;
+
+            case "roca":
+                return 12;
+
+            case "fantasma":
+                return 13;
+
+            case "dragon":
+                return 14;
+
+            case "acero":
+                return 15;
+
+            case "siniestro":
+                return 16;
+
+            case "hada":
+                return 17;
+
+            default:
+                return -1;
+        }
+    }
     
 }
